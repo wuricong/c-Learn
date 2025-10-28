@@ -1,10 +1,11 @@
 #include <iostream>
 #include <windows.h>
+#include <iomanip>
 
 
-std::pair<int,int> testInput(){
-    int number;
-    int num;
+std::pair<double,double> testInput(){
+    double number;
+    double num;
     std::cout << "请输入第一个数字：";
     std::cin >> number;
     std::cout << "请输入第二个数字：";
@@ -13,10 +14,28 @@ std::pair<int,int> testInput(){
 }
 
 int main() {
+    int num;
     // 设置控制台输出为 UTF-8
     SetConsoleOutputCP(65001);
 
     auto [a, b] = testInput();
-    std::cout << "你输入的是: " << a << "和" << b << std::endl;
+    // std::cout << "你输入的是: " << a << "和" << b << std::endl;
+
+      // 检查输入操作是否成功
+    if (std::cin.fail()) {
+        std::cerr << "Invalid input!" << std::endl;
+    } else {
+        // 打印和，保留 6 位小数（根据需要调整）
+        std::cout << std::fixed << std::setprecision(6);
+        std::cout << "You entered: " << (a + b) << std::endl;
+    }
+
+    if(a > b) {
+        std::cout << a << "大于" << b;
+    } else if (a < b) {
+        std::cout << a << "小于" << b;
+    } else {
+        std::cout << a << "等于" << b; 
+    }
     return 0;
 }
